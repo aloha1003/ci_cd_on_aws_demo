@@ -1,8 +1,7 @@
 # circle.yml
 machine:
   node:
-    version: 0.10.22
-
+    version: 0.10.40
 dependencies:
   pre:
     - sudo apt-get install -y npm
