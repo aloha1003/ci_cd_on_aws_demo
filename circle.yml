@@ -1,12 +1,14 @@
 # circle.yml
 machine:
-  node:
-    version: 4.0.0
+  services:
+    - docker
 dependencies:
-  pre:
-    - sudo apt-get install -y npm
+  override:
+    - docker-compose up -d 
 test:
   override:
     - ./node_modules/.bin/mocha
+        # 使用 curl 測試 docker 是否有順利執行 node
+    - curl --retry 10 --retry-delay 5 -v http://localhost:3000
     
 
