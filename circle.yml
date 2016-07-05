@@ -5,8 +5,6 @@ machine:
 dependencies:
   pre:
     - sudo apt-get install -y npm
-  override:
-    - npm install --dev
 test:
   override:
     - ./node_modules/.bin/mocha
