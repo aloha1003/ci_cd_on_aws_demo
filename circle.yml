@@ -4,7 +4,7 @@ machine:
     - docker
 dependencies:
   override:
-    - docker build -t docker_node
+    - docker build -t docker_node .
 test:
   override:
     - ./node_modules/.bin/mocha
