@@ -1,2 +1,2 @@
-nodejs:
+nodejs_web:
     build: .
