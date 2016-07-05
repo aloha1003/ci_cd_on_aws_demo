@@ -1,10 +1,13 @@
 # circle.yml
 machine:
   node:
-    version: 0.10
+    version: 0.10.22
+
 dependencies:
   pre:
-    - apt-get install -y npm
+    - sudo apt-get install -y npm
+  override:
+    - npm install --dev
 test:
   override:
     - ./node_modules/.bin/mocha
