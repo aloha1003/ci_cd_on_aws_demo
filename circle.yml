@@ -6,6 +6,8 @@ machine:
   services:
     - docker
 dependencies:
+  pre:
+    - sudo pip install awsebcli
   override:
     - docker build -t docker_node .
 test:
