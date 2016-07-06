@@ -1,11 +1,11 @@
 FROM node:argon
 
 # Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN mkdir -p /app
+WORKDIR /app
 
 # Install app dependencies
-ADD . /usr/src/app
+ADD . /app
 RUN npm install
 
 EXPOSE 3000
