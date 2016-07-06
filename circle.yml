@@ -7,6 +7,10 @@ machine:
     - docker
 dependencies:
   pre:
+     - |
+      sudo curl -L -o /usr/bin/docker 'http://s3-external-1.amazonaws.com/circle-downloads/docker-1.6.2-circleci'
+      sudo chmod 0755 /usr/bin/docker
+      sudo start docker
     - sudo pip install awsebcli --ignore-installed setuptools
   override:
     - docker build -t docker_node .
@@ -16,9 +20,9 @@ test:
   override:
         #使用 curl 測試 docker 是否有順利執行 node
     - docker run -d -p 3000:3000 --name docker_node_run docker_node
-    - bash ./docker_enter.sh docker_node_run
+    #- ./docker_enter.sh docker_node_run
     - cd app; ./node_modules/.bin/mocha
-    #- docker exec -i docker_node_run bash -c "./node_modules/.bin/mocha"
+    - docker exec -i docker_node_run bash -c "./node_modules/.bin/mocha"
     - curl --retry 10 --retry-delay 5 -v http://localhost:3000
 # 新增一筆部署腳本
 deployment:
