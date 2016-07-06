@@ -10,6 +10,9 @@ set -e
 #     rm /home/ubuntu/.aws/config
     
 # fi
+if [ ! -d ".elasticbeanstalk" ]; then
+    mkdir .elasticbeanstalk
+fi
 mv elasticbeanstalk-config.yml .elasticbeanstalk/config.yml
 # touch chmod 600 /home/ubuntu/.aws/config
 # echo "[profile eb-cli]" > /home/ubuntu/.aws/config
