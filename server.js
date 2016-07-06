@@ -8,7 +8,7 @@ var PORT = 3000;
 // App
 var app = express();
 app.get('/', function (req, res) {
-  res.send('Hello World \n');
+  res.send('Deploy by CI \n');
 });
 
 app.listen(PORT);

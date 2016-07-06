@@ -21,4 +21,5 @@ deployment:
   production:
     branch: master
     commands:
+      - bash ./setup-eb.sh
       - eb deploy env-production
