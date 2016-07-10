@@ -5,32 +5,38 @@ machine:
   # Install eb need python
   python:
     version: 2.7
+  node:
+    version: 4.0.0
   services:
     - docker
 dependencies:
   pre:
+    - sudo apt-get install -y npm
+    - npm install 
     # - uname -r
     # - sudo apt-get update
     # - sudo apt-get install apt-transport-https ca-certificates
     # - sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
     # - sudo apt-get install -y docker-engine
-    - sudo pip install awsebcli --ignore-installed setuptools
+    #- sudo pip install awsebcli --ignore-installed setuptools
   override:
     - docker build -t docker_node .
     #Because circle ci's docker is not lxc not run docker exec
     #- docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter
 test:
   override:
-        #使用 curl 測試 docker 是否有順利執行 node
-    - docker run -d -p 3000:3000 --name docker_node_run docker_node
+    - ./node_modules/.bin/mocha
+    #使用 curl 測試 docker 是否有順利執行 node
+    #- docker run -d -p 3000:3000 --name docker_node_run docker_node
     #- ./docker_enter.sh docker_node_run
     #- cd app; ./node_modules/.bin/mocha
-    - sudo lxc-attach -n "$(docker inspect --format "{{.Id}}" docker_node_run)" -- bash -c "cd app/ ; ./node_modules/.bin/mocha"
+    #- sudo lxc-attach -n "$(docker inspect --format "{{.Id}}" docker_node_run)" -- bash -c "cd app/ ; ./node_modules/.bin/mocha"
 
     #- docker exec -i docker_node_run bash -c "./node_modules/.bin/mocha"
+    
     - curl --retry 10 --retry-delay 5 -v http://localhost:3000
-# 新增一筆部署腳本
+# Deploy To Elatic beantalk
 deployment:
   production:
     branch: master
