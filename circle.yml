@@ -28,7 +28,7 @@ test:
   override:
     - ./node_modules/.bin/mocha
     #使用 curl 測試 docker 是否有順利執行 node
-    #- docker run -d -p 3000:3000 --name docker_node_run docker_node
+    - docker run -d -p 3000:3000 --name docker_node_run docker_node
     #- ./docker_enter.sh docker_node_run
     #- cd app; ./node_modules/.bin/mocha
     #- sudo lxc-attach -n "$(docker inspect --format "{{.Id}}" docker_node_run)" -- bash -c "cd app/ ; ./node_modules/.bin/mocha"
