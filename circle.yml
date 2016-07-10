@@ -1,7 +1,7 @@
 # circle.yml
 machine:
   pre:
-    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+   - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
   # Install eb need python
   python:
     version: 2.7
@@ -19,7 +19,7 @@ dependencies:
     # - sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
     # - sudo apt-get install -y docker-engine
-     - sudo pip install awsebcli --ignore-installed setuptools
+    - sudo pip install awsebcli --ignore-installed setuptools
   override:
     - docker build -t docker_node .
     #Because circle ci's docker is not lxc not run docker exec
