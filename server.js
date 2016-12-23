@@ -9,6 +9,7 @@ var PORT = 3000;
 // App
 var app = express();
 app.get('/', function (req, res) {
+  console.log('Can out to cloud Watch');
   res.send('Hello World \n');
 });
 
